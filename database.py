@@ -1,7 +1,5 @@
 import pyodbc
 
-import env
-
 class DatabaseConnection(object):
 
     def __init__(self, odbc_driver, system, database, user, password):
