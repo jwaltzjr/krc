@@ -29,7 +29,7 @@ class KrcEmail():
         if password:
             self.password = password
         else:
-            self.default_password()
+            self.password = self.default_password()
 
         self.email = None
         self.build(self.send_to, self.send_from, self.subject, self.message, self.message_html, self.attachments)
