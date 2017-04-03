@@ -4,9 +4,12 @@
 		{
             "file_exclude_patterns":
             [
-                "*.pyc"
+                "*.pyc",
+                ".gitignore",
+                "*.sublime-project",
+                "*.sublime-workspace"
             ],
-			"path": "krc"
+			"path": "/"
 		}
 	]
 }
