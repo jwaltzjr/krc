@@ -14,7 +14,7 @@ class KrcEmail():
 
     def __init__(self, send_to, send_from='reports@krclogistics.com',
             subject='', message='', message_html=None, attachments=None,
-            server='smtp.office365.com', port=587, password=env.email_password.value):
+            server='smtp.office365.com', port=587, password=None):
 
         self.send_to = send_to
         self.send_from = send_from
@@ -29,10 +29,17 @@ class KrcEmail():
 
         self.server = server
         self.port = port
-        self.password = password
+        if password:
+            self.password = password
+        else:
+            self.default_password()
 
         self.email = None
         self.build(self.send_to, self.send_from, self.subject, self.message, self.message_html, self.attachments)
+
+    def default_password(self):
+        # Override this through inheritence if you want a default value
+        return None
 
     def build(self, send_to, send_from, subject, message, message_html, attachments):
         email_object = MIMEMultipart('alternative')
