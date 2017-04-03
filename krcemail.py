@@ -13,7 +13,7 @@ EmailAttachment = collections.namedtuple('EmailAttachment', ['filename', 'conten
 class KrcEmail():
 
     def __init__(self, send_to, send_from='reports@krclogistics.com',
-            subject='', message='', message_html=None, attachments=[],
+            subject='', message='', message_html=None, attachments=None,
             server='smtp.office365.com', port=587, password=env.email_password.value):
 
         self.send_to = send_to
@@ -22,7 +22,10 @@ class KrcEmail():
         self.subject = subject
         self.message = message
         self.message_html = message_html
-        self.attachments = [EmailAttachment._make(x) for x in attachments]
+        if attachments:
+            self.attachments = [EmailAttachment._make(x) for x in attachments]
+        else:
+            self.attachments = []
 
         self.server = server
         self.port = port
