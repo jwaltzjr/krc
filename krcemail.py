@@ -47,7 +47,7 @@ class KrcEmail(object):
 
         email_object.attach(MIMEText(message, 'plain'))
         if message_html:
-            email_object.attach(MIMEText(email_html, 'html'))
+            email_object.attach(MIMEText(message_html, 'html'))
 
         for attachment in attachments:
             mime_attachment = MIMEApplication(attachment.content)
