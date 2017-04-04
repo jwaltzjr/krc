@@ -7,7 +7,7 @@ from email.mime.application import MIMEApplication
 
 EmailAttachment = collections.namedtuple('EmailAttachment', ['filename', 'content'])
 
-class KrcEmail():
+class KrcEmail(object):
 
     def __init__(self, send_to, send_from='reports@krclogistics.com',
             subject='', message='', message_html=None, attachments=None,
