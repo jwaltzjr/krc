@@ -1,11 +1,15 @@
 import base64
 import os
+import sys
 
 from Crypto.Cipher import AES
 
 class EnvVar(object):
 
-    X = b'uWFBxsfP8tuajNGB'
+    if (sys.version_info > (3, 0)): # Python 3
+        X = b'uWFBxsfP8tuajNGB'
+    else: # Python 2
+        X = 'uWFBxsfP8tuajNGB'
 
     def __init__(self, name):
         self.name = name.upper()
@@ -14,7 +18,11 @@ class EnvVar(object):
     @property
     def value(self):
         raw_value = os.environ[self.name]
-        return self.cipher.decrypt(base64.b64decode(raw_value)).strip()
+        if (sys.version_info > (3, 0)): # Python 3
+            value = self.cipher.decrypt(base64.b64decode(raw_value)).strip()
+        else: # Python 2
+            value = self.cipher.decrypt(base64.b64decode(raw_value)).strip().decode('utf-8')
+        return value
 
     @value.setter
     def value(self, value):
