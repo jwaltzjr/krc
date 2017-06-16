@@ -19,9 +19,9 @@ class EnvVar(object):
     def value(self):
         raw_value = os.environ[self.name]
         if (sys.version_info > (3, 0)): # Python 3
-            value = self.cipher.decrypt(base64.b64decode(raw_value)).strip()
-        else: # Python 2
             value = self.cipher.decrypt(base64.b64decode(raw_value)).strip().decode('utf-8')
+        else: # Python 2
+            value = self.cipher.decrypt(base64.b64decode(raw_value)).strip()
         return value
 
     @value.setter
