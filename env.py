@@ -5,7 +5,7 @@ from Crypto.Cipher import AES
 
 class EnvVar(object):
 
-    X = 'uWFBxsfP8tuajNGB'
+    X = b'uWFBxsfP8tuajNGB'
 
     def __init__(self, name):
         self.name = name.upper()
