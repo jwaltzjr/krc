@@ -8,6 +8,8 @@ class DatabaseConnection(object):
         self.database = database
         self.user = user
         self.password = password
+        self.hostname = hostname
+        self.port = port
 
     def __repr__(self):
         return '{class_name}(system={system}, database={database}, user={user})'.format(
