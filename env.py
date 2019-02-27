@@ -26,6 +26,9 @@ class EnvVar(object):
 
     @value.setter
     def value(self, value):
-        value_justified = value.rjust(32)
+        if (sys.version_info > (3, 0)): # Python 3
+            value_justified = value.rjust(32).encode('utf-8')
+        else: # Python 2
+            value_justified = value.rjust(32)
         encoded = base64.b64encode(self.cipher.encrypt(value_justified))
         os.system('setx %s %s' % (self.name, encoded))
